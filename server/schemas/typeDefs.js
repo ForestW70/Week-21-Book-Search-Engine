@@ -6,7 +6,7 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
-        savedBooks: [bookSchema]
+        savedBooks: [Book]
     }
 
     type Book {
@@ -39,10 +39,10 @@ const typeDefs = gql`
             password: String!
         ): Auth
         saveBook(
-            book: BookId!
+            bookId: String!
         ): User
         removeBook(
-            book: BookId!
+            bookId: String!
         ): User
     }
   
