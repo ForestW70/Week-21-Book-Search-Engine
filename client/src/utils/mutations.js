@@ -33,7 +33,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const SAVE_BOOK = gql`
-    mutation saveBook($book: String!) {
+    mutation saveBook($book: BookInput!) {
         saveBook(book: $book) {
             username
             savedBooks {

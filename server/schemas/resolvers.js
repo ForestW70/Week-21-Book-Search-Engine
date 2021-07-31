@@ -37,7 +37,7 @@ const resolvers = {
         return { token, user }
     },
 
-    saveBook: async (p, { bookId }, context) => {
+    saveBook: async (p, { book }, context) => {
         if (!context.user) {
             throw new Error('Please log in to save books!')
         }
@@ -45,7 +45,7 @@ const resolvers = {
         // add book if not present already in savedBooks array
         const action = await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $addToSet: { savedBooks: bookId } },
+            { $addToSet: { savedBooks:  book  }},
             { new: true }
         );
 
@@ -57,12 +57,14 @@ const resolvers = {
             throw new Error('Please log in to save books!')
         }
 
-        const action = await User.findOneAndRemove(
+        const action = await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $pull: { savedBooks: bookId } },
+            { $pull: { savedBooks: {bookId} } },
             { new: true }
         )
 
+            
+        
         return action
     }
   },

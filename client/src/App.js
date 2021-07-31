@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
+  credentials: 'same-origin',
 });
 
 const authLink = setContext((_, { headers }) => {
